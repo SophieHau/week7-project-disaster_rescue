@@ -42,7 +42,7 @@ class Person(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     other_name = models.CharField(max_length=100, null=True, default=None, blank=True)
-    status = models.ForeignKey(PersonStatus, on_delete=models.SET_NULL, blank=True, null=True)
+    status = models.ForeignKey(PersonStatus, on_delete=models.SET_NULL, blank=True, null=True, related_name='status')
     id_number = models.IntegerField(null=True, default=None, blank=True, unique=True)
     dob = models.DateField(null=True, default=None, blank=True)
     mobile = models.CharField(max_length=20, null=True, default=None, blank=True)

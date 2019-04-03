@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row mt-5">
+    <h1>{{ person.first_name }} {{ person.last_name }} <a href="#" class="btn btn-primary">Update</a></h1> 
+
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="list-group list-group-flush mt-4 mb-5">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">First name: </li>
+                <li class="list-group-item">Last name: </li>
+                <li class="list-group-item">Other name: </li>
+                <li class="list-group-item">Status: </li>
+                <li class="list-group-item">ID Number: </li>
+                <li class="list-group-item">Date of Birth: </li>
+                <li class="list-group-item">Mobile: </li>
+                <li class="list-group-item">Email: </li>
+                <li class="list-group-item">Description: </li>
+                <li class="list-group-item">Last updated: </li>
+                <li class="list-group-item"></li>
+              </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="list-group list-group-flush mt-4 mb-5">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ person.first_name }}</li>
+                <li class="list-group-item">{{ person.last_name }}</li>
+                <li class="list-group-item">{{ person.other_name }}</li>
+                
+                <li class="list-group-item">{% if person.status.name == 'missing' %}<span class="text-danger" > {{ person.status.name }} </span>{% elif person.status.name == 'safe' %}<span class="text-success">{{ person.status.name }}</span> {% endif %}</li>
+                <li class="list-group-item">{{ person.id_number }}</li>
+                <li class="list-group-item">{{ person.dob }}</li>
+                <li class="list-group-item">{{ person.mobile }}</li>
+                <li class="list-group-item">{{ person.email }} </li>
+                <li class="list-group-item">{{ person.description }}</li>
+                <li class="list-group-item">{{ person.updated_date }}</li>
+                <li class="list-group-item"></li>
+              </ul>
+      </div>
+
+    </div>
+  </div>
+        
+</div>
+
+{% endblock %}

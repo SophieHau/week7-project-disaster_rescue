@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 
-from .models import PersonStatus
+from .models import PersonStatus, Person
 
 def index(request):
 	return render(request, 'portal/index.html')
@@ -16,11 +16,13 @@ def add_person(request):
 
 def show_person(request, person_id):
     # ... 
-    pass
+    person = Person.objects.get(id=person_id)
+    return render(request, 'portal/show_person.html', {
+            'person': person })
 
 
 def show_safe_persons(request):
-    persons = None # ... change this line!
+    persons = Person.objects.filter(status__name='safe')
     return render(request, 'portal/show_persons.html', {
         'title': 'Persons marked as Safe',
         'main_heading': 'Persons Marked as Safe',
