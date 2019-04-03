@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Event(models.Model):
     CATEGORY = (
         ('fire', 'Fire'),
@@ -52,6 +53,11 @@ class Person(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+
+
+
+
 
 
 
