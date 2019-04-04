@@ -64,6 +64,7 @@
                 <li class="list-group-item">Email: </li>
                 <li class="list-group-item">Description: </li>
                 <li class="list-group-item">Last updated: </li>
+                <li class="list-group-item">Event: </li>
                 <li class="list-group-item"></li>
               </ul>
       </div>
@@ -82,6 +83,7 @@
                 <li class="list-group-item">{{ person.email }} </li>
                 <li class="list-group-item">{{ person.description }}</li>
                 <li class="list-group-item">{{ person.updated_date }}</li>
+                <li class="list-group-item"><a href="{% url 'portal:show_event' person.event.id %}">{{ person.event.name }}</a></li>
                 <li class="list-group-item"></li>
               </ul>
       </div>

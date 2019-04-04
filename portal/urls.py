@@ -12,6 +12,11 @@ urlpatterns = [
 	path('persons/add', views.add_person, name='add_person'),
 	path('persons/search_person', views.search_person, name='search_person'),
 	path('persons/update/<int:person_id>', views.update_person, name='update_person'),
-	path('persons/delete/<int:person_id>', views.delete_person, name='delete_person')
+	path('persons/delete/<int:person_id>', views.delete_person, name='delete_person'),
+	path('events/add', views.add_event, name='add_event'),
+	path('events/show_all', views.show_events, name='show_events'),
+	path('events/<int:event_id>', views.show_event, name='show_event'),
+	path('events/update/<int:event_id>', views.update_event, name='update_event'),
+	path('events/delete/<int:event_id>', views.delete_event, name='delete_event'),
    # to do: add more paths...
 ]

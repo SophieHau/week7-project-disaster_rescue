@@ -51,6 +51,7 @@ class Person(models.Model):
     email = models.EmailField(null=True, default=None, blank=True)
     description = models.CharField(max_length=300)
     updated_date = models.DateTimeField(auto_now_add=True)
+    event = models.ForeignKey(Event, on_delete=models.SET_NULL, blank=True, null=True, related_name='events')
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)

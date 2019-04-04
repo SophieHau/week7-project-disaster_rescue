@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from django.contrib import messages
-from .models import PersonStatus, Person
-from .forms import PersonForm
+from .models import PersonStatus, Person, Event
+from .forms import PersonForm, EventForm
 
 def index(request):
     return render(request, 'portal/index.html')
@@ -89,5 +89,55 @@ def update_person(request, person_id):
         'form': person_form,
         'person': person
         })
+
+def add_event(request):
+    if request.method == 'POST':
+        event = EventForm(request.POST)
+        event.save()
+        messages.success(request, 'Event added.')
+        return redirect('portal:show_events')
+    form = EventForm()
+    return render(request, 'portal/add_event.html', {
+            'form': form
+        })
+
+
+def show_events(request):
+    events = Event.objects.order_by('-start_date')
+    return render(request, 'portal/show_events.html', {
+            'title': 'Events',
+            'main_heading': 'Events List',
+            'events': events
+        })
+
+def show_event(request, event_id):
+    event = Event.objects.get(id=event_id)
+    return render(request, 'portal/show_event.html', {
+            'event': event
+        })
+
+
+def update_event(request, event_id):
+    event = Event.objects.get(id=event_id)
+    if request.method == 'POST':
+        event_form = EventForm(request.POST, instance=event)
+
+        if event_form.is_valid():
+            event_form.save()
+            messages.success(request, 'Event details updated.')
+            return redirect('portal:show_event', event_id=event_id)
+
+    event_form = EventForm(instance=event)
+    return render(request, 'portal/update_event.html', {
+        'form': event_form,
+        'event': event
+        })
+
+def delete_event(request, event_id):
+    if request.method == 'POST':
+        event = Event.objects.get(id=event_id)
+        event.delete()
+        messages.info(request, 'Event deleted.')
+    return redirect('portal:show_events')
 
 
