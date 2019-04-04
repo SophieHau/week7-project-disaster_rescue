@@ -14,4 +14,4 @@ class PersonForm(ModelForm):
 class EventForm(ModelForm):
 	class Meta:
 		model = Event
-		fields = ['name', 'end_date', 'location', 'severity', 'category']
+		fields = ['name', 'end_date', 'location', 'severity', 'category', 'image']

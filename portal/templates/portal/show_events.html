@@ -19,7 +19,7 @@
       <h1>{{ main_heading }} <a href="{% url 'portal:add_event' %}" class="btn btn-primary mr-2">Add Event</a></h1>
       <div class="list-group list-group-flush mt-4 mb-5">
         {% for event in events %}
-        <a href="{% url 'portal:show_event' event.id %}" class="list-group-item list-group-item-action">{{ event.name }} <br> {{ event.start_date }}</a>
+        <a href="{% url 'portal:show_event' event.id %}" class="list-group-item list-group-item-action">{{ event.name }}  <br> {{ event.start_date }} </a>
         {% endfor %}
       </div>
     </div>

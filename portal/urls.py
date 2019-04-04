@@ -18,5 +18,6 @@ urlpatterns = [
 	path('events/<int:event_id>', views.show_event, name='show_event'),
 	path('events/update/<int:event_id>', views.update_event, name='update_event'),
 	path('events/delete/<int:event_id>', views.delete_event, name='delete_event'),
+	path('events/persons/<int:event_id>', views.show_persons_by_event, name='show_persons_by_event')
    # to do: add more paths...
 ]

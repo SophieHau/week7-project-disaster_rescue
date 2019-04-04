@@ -27,6 +27,7 @@ class Event(models.Model):
                                 default='medium')
     category = models.CharField(max_length=10, choices=CATEGORY,
                                 default='fire')
+    image = models.CharField(max_length=1000, null=True, default=None, blank=True)
 
     def __str__(self):
         return "{} [{}] at {}".format(

@@ -140,4 +140,12 @@ def delete_event(request, event_id):
         messages.info(request, 'Event deleted.')
     return redirect('portal:show_events')
 
+def show_persons_by_event(request, event_id):
+    persons = Person.objects.filter(event__id=event_id)
+    return render(request, 'portal/show_persons.html', {
+            'title': 'Persons registered',
+            'main_heading': 'Persons Registered for this Event',
+            'persons': persons
+        })
+
 

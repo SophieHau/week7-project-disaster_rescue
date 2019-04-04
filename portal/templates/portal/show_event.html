@@ -14,12 +14,12 @@
 <div class="container">
 
   <div class="row mt-4">
-    <div class="col-4">
-    <h1>{{ event.name }}
+    <div class="col-5">
+    <h1>{{ event.name }} <a href="{% url 'portal:show_persons_by_event' event.id %}" class="btn btn-primary mr-2">Persons registered</a>
     </h1> 
     </div>
     <div class="col">
-    <h1><a href="{% url 'portal:update_event' event.id %}" class="btn btn-primary mr-2">Update</a><button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#delete_confirmation">Delete</button>
+    <h1><a href="{% url 'portal:update_event' event.id %}" class="btn btn-dark mr-2">Update</a><button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#delete_confirmation">Delete</button>
           <div class="modal fade" id="delete_confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -42,13 +42,14 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>        
       </div>
     </div>
     </h1>
   </div>
     
   </div>
+
     <div class="container">
   <div class="row">
     <div class="col-3">
@@ -60,6 +61,7 @@
                 <li class="list-group-item">Location: </li>
                 <li class="list-group-item">Severity: </li>
                 <li class="list-group-item">Category: </li>
+                <li class="list-group-item">Images: </li>
                 <li class="list-group-item"></li>
               </ul>
       </div>
@@ -73,7 +75,7 @@
                 <li class="list-group-item">{{ event.location }}</li>
                 <li class="list-group-item">{{ event.severity }}</li>
                 <li class="list-group-item">{{ event.category }}</li>
-                <li class="list-group-item"></li>
+                <li class="list-group-item">  <img class="img-fluid" src="{{ event.image }}"></li>
               </ul>
       </div>
 
