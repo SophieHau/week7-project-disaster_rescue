@@ -3,8 +3,38 @@
 {% block content %}
 <div class="container">
   <div class="row mt-5">
-    <h1>{{ person.first_name }} {{ person.last_name }} <a href="{% url 'portal:update_person' person.id %}" class="btn btn-primary">Update</a></h1> 
-
+    <div class="col">
+    <h1>{{ person.first_name }} {{ person.last_name }} <a href="{% url 'portal:update_person' person.id %}" class="btn btn-primary ml-5">Update</a>
+    </h1> 
+    </div>
+    <div class="col">
+    <h1><button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#delete_confirmation">Delete</button>
+          <div class="modal fade" id="delete_confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h6>This person's record will be permanently deleted from our database.</h6>
+            </div>
+            <div class="modal-footer">
+              <form method='POST' action="{% url 'portal:delete_person' person.id %}">
+                {% csrf_token %}
+              <button type="submit" class="btn btn-secondary">Delete</button>
+              </form>
+              <div>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </h1>
   </div>
   <div class="row">
     <div class="col-3">

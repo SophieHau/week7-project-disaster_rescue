@@ -25,6 +25,12 @@ def show_person(request, person_id):
     return render(request, 'portal/show_person.html', {
             'person': person })
 
+def delete_person(request, person_id):
+    if request.method == 'POST':
+        person = Person.objects.get(id=person_id)
+        person.delete()
+    return redirect('portal:index')
+
 
 def show_safe_persons(request):
     persons = Person.objects.filter(status__name='safe')
@@ -74,11 +80,11 @@ def update_person(request, person_id):
         if person_form.is_valid():
             person_form.save()
             return redirect('portal:index')
-        else:
-            print('error')
 
     person_form = PersonForm(instance=person)
     return render(request, 'portal/update.html', {
         'form': person_form,
         'person': person
         })
+
+
