@@ -33,6 +33,21 @@ def show_safe_persons(request):
         'main_heading': 'Persons Marked as Safe',
         'persons': persons })
 
+def show_missing_persons(request):
+    persons = Person.objects.filter(status__name='missing')
+    return render(request, 'portal/show_persons.html', {
+            'title': 'Persons marked as missing',
+            'main_heading': 'Persons Marked as Missing',
+            'persons': persons
+        })
+
+def show_all_persons(request):
+    persons = Person.objects.all()
+    return render(request, 'portal/show_persons.html', {
+            'title': 'All persons registered',
+            'main_heading': 'All Persons Registered',
+            'persons': persons,
+        })
 
 def search_person(request):
     context = None
@@ -54,17 +69,6 @@ def update_person(request, person_id):
     person = Person.objects.get(id=person_id)
 
     if request.method == 'POST':
-        # form = PersonForm(request.POST, initial={
-        #     'first_name': person.first_name,
-        #     'last_name': person.last_name,
-        #     'other_name': person.other_name,
-        #     'status': person.status,
-        #     'id_number': person.id_number,
-        #     'dob': person.dob,
-        #     'mobile': person.mobile,
-        #     'email': person.email,
-        #     'description': person.description,
-        #     })
         person_form = PersonForm(request.POST, instance=person)
 
         if person_form.is_valid():
