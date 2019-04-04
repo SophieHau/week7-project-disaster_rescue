@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container">
   <div class="row mt-5">
-    <h1>{{ person.first_name }} {{ person.last_name }} <a href="#" class="btn btn-primary">Update</a></h1> 
+    <h1>{{ person.first_name }} {{ person.last_name }} <a href="{% url 'portal:update_person' person.id %}" class="btn btn-primary">Update</a></h1> 
 
   </div>
   <div class="row">

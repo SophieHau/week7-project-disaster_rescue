@@ -9,5 +9,6 @@ urlpatterns = [
 	path('persons/<int:person_id>', views.show_person, name='show_person'),
 	path('persons/add', views.add_person, name='add_person'),
 	path('persons/search_person', views.search_person, name='search_person'),
+	path('persons/update/<int:person_id>', views.update_person, name='update_person')
    # to do: add more paths...
 ]

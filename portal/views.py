@@ -5,7 +5,7 @@ from .models import PersonStatus, Person
 from .forms import PersonForm
 
 def index(request):
-	return render(request, 'portal/index.html')
+    return render(request, 'portal/index.html')
 
 
 def add_person(request):
@@ -48,4 +48,33 @@ def search_person(request):
 
     return render(request, 'portal/search_results.html', {
             'results': results
+        })
+
+def update_person(request, person_id):
+    person = Person.objects.get(id=person_id)
+
+    if request.method == 'POST':
+        # form = PersonForm(request.POST, initial={
+        #     'first_name': person.first_name,
+        #     'last_name': person.last_name,
+        #     'other_name': person.other_name,
+        #     'status': person.status,
+        #     'id_number': person.id_number,
+        #     'dob': person.dob,
+        #     'mobile': person.mobile,
+        #     'email': person.email,
+        #     'description': person.description,
+        #     })
+        person_form = PersonForm(request.POST, instance=person)
+
+        if person_form.is_valid():
+            person_form.save()
+            return redirect('portal:index')
+        else:
+            print('error')
+
+    person_form = PersonForm(instance=person)
+    return render(request, 'portal/update.html', {
+        'form': person_form,
+        'person': person
         })
