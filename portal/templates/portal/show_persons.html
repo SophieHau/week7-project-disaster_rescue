@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
+<div class="container mt-2">
+      {% if messages %}
+      <div class="alert alert-danger" role="alert">
+      {% for message in messages %}
+      <div {% if message.success %} class="{{ message.success }}">{{ message }}</div>
+      <div {% elif message.info %} class="{{ message.info }}"{% endif %}>{{ message }}</div>
+    </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    </div>
+<div class="container">
 <div class="container">
   <div class="row mt-5">
     <div class="col-8">

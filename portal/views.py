@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
-
+from django.contrib import messages
 from .models import PersonStatus, Person
 from .forms import PersonForm
 
@@ -12,7 +12,8 @@ def add_person(request):
     if request.method == 'POST':
         person = PersonForm(request.POST)
         person.save()
-        return redirect('portal:index')
+        messages.success(request, 'Profile added.')
+        return redirect('portal:show_all')
     form = PersonForm()
     return render(request, 'portal/add_person.html', {
             'form': form
@@ -29,7 +30,8 @@ def delete_person(request, person_id):
     if request.method == 'POST':
         person = Person.objects.get(id=person_id)
         person.delete()
-    return redirect('portal:index')
+        messages.info(request, 'Profile deleted.')
+    return redirect('portal:show_all')
 
 
 def show_safe_persons(request):
@@ -79,7 +81,8 @@ def update_person(request, person_id):
 
         if person_form.is_valid():
             person_form.save()
-            return redirect('portal:index')
+            messages.success(request, 'Profile details updated.')
+            return redirect('portal:show_person', person_id=person_id)
 
     person_form = PersonForm(instance=person)
     return render(request, 'portal/update.html', {

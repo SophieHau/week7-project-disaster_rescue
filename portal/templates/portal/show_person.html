@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
 {% block content %}
+<div class="container mt-2">
+      {% if messages %}
+      <div class="alert alert-danger" role="alert">
+      {% for message in messages %}
+      <div {% if message.success %} class="{{ message.success }}"{% endif %}>{{ message }}</div>
+    </div>
+      {% endfor %}
+      </div>
+    {% endif %}
+    </div>
 <div class="container">
-  <div class="row mt-5">
-    <div class="col">
-    <h1>{{ person.first_name }} {{ person.last_name }} <a href="{% url 'portal:update_person' person.id %}" class="btn btn-primary ml-5">Update</a>
+
+  <div class="row mt-4">
+    <div class="col-4">
+    <h1>{{ person.first_name }} {{ person.last_name }}
     </h1> 
     </div>
     <div class="col">
-    <h1><button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#delete_confirmation">Delete</button>
+    <h1><a href="{% url 'portal:update_person' person.id %}" class="btn btn-primary mr-2">Update</a><button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#delete_confirmation">Delete</button>
           <div class="modal fade" id="delete_confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -36,6 +47,9 @@
     </div>
     </h1>
   </div>
+    
+  </div>
+    <div class="container">
   <div class="row">
     <div class="col-3">
       <div class="list-group list-group-flush mt-4 mb-5">
